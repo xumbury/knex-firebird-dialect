@@ -79,6 +79,7 @@ class QueryCompiler_Firebird extends QueryCompiler {
 
   _prepInsert(insertValues) {
     const newValues = {};
+    console.log(insert)
     for (const key in insertValues) {
       if (insertValues.hasOwnProperty(key)) {
         const value = insertValues[key];
