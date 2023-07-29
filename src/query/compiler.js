@@ -114,7 +114,7 @@ class QueryCompiler_Firebird extends QueryCompiler {
 
   _prepInsert(insertValues) {
     const newValues = {};
-    console.log(insertValues)
+    console.log('pqp',insertValues)
     for (const key in insertValues) {
       if (insertValues.hasOwnProperty(key)) {
         const value = insertValues[key];
@@ -123,6 +123,7 @@ class QueryCompiler_Firebird extends QueryCompiler {
         }
       }
     }
+    console.log(newValues)
     return super._prepInsert(newValues);
   }
   // Compiles a `columnInfo` query
