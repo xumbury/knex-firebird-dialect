@@ -61,6 +61,7 @@ class QueryCompiler_Firebird extends QueryCompiler {
   }
 
   insert() {
+    console.log('aqui')
     let sql = super.insert();
     if (sql === "") return sql;
 
