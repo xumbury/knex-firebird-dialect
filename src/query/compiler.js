@@ -75,57 +75,57 @@ class QueryCompiler_Firebird extends QueryCompiler {
     };
   }
 
-  _insertBody(insertValues) {
-    console.log(insertValues)
-    let sql = '';
-    if (Array.isArray(insertValues)) {
-      if (insertValues.length === 0) {
-        return '';
-      }
-    } else if (typeof insertValues === 'object' && isEmpty(insertValues)) {
-      return sql + this._emptyInsertValue;
-    }
+  // _insertBody(insertValues) {
+  //   console.log(insertValues)
+  //   let sql = '';
+  //   if (Array.isArray(insertValues)) {
+  //     if (insertValues.length === 0) {
+  //       return '';
+  //     }
+  //   } else if (typeof insertValues === 'object' && isEmpty(insertValues)) {
+  //     return sql + this._emptyInsertValue;
+  //   }
 
-    const insertData = this._prepInsert(insertValues);
-    console.log(insertData)
-    if (typeof insertData === 'string') {
-      sql += insertData;
-    } else {
-      if (insertData.columns.length) {
-        sql += `(${columnize_(
-          insertData.columns,
-          this.builder,
-          this.client,
-          this.bindingsHolder
-        )}`;
-        sql += ') values (' + this._buildInsertValues(insertData) + ')';
-      } else if (insertValues.length === 1 && insertValues[0]) {
-        sql += this._emptyInsertValue;
-      } else {
-        sql = '';
-      }
-    }
-    return sql;
-  }
+  //   const insertData = this._prepInsert(insertValues);
+  //   console.log(insertData)
+  //   if (typeof insertData === 'string') {
+  //     sql += insertData;
+  //   } else {
+  //     if (insertData.columns.length) {
+  //       sql += `(${columnize_(
+  //         insertData.columns,
+  //         this.builder,
+  //         this.client,
+  //         this.bindingsHolder
+  //       )}`;
+  //       sql += ') values (' + this._buildInsertValues(insertData) + ')';
+  //     } else if (insertValues.length === 1 && insertValues[0]) {
+  //       sql += this._emptyInsertValue;
+  //     } else {
+  //       sql = '';
+  //     }
+  //   }
+  //   return sql;
+  // }
 
   _returning(value) {
     return value ? ` returning ${this.formatter.columnize(value)}` : "";
   }
 
-  _prepInsert(insertValues) {
-    const newValues = {};
-    console.log('pqp',insertValues)
-    for (const key in insertValues) {
-      if (insertValues.hasOwnProperty(key)) {
-        const value = insertValues[key];
-        if (typeof value !== "undefined") {
-          newValues[key] = value;
-        }
-      }
-    }
-    console.log(newValues)
-    return super._prepInsert(newValues);
-  }
+  // _prepInsert(insertValues) {
+  //   const newValues = {};
+  //   console.log('pqp',insertValues)
+  //   for (const key in insertValues) {
+  //     if (insertValues.hasOwnProperty(key)) {
+  //       const value = insertValues[key];
+  //       if (typeof value !== "undefined") {
+  //         newValues[key] = value;
+  //       }
+  //     }
+  //   }
+  //   console.log(newValues)
+  //   return super._prepInsert(newValues);
+  // }
   // Compiles a `columnInfo` query
   columnInfo() {
     const column = this.single.columnInfo;
