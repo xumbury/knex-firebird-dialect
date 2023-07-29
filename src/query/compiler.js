@@ -87,6 +87,7 @@ class QueryCompiler_Firebird extends QueryCompiler {
     }
 
     const insertData = this._prepInsert(insertValues);
+    console.log(insertData)
     if (typeof insertData === 'string') {
       sql += insertData;
     } else {
