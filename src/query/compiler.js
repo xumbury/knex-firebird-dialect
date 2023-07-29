@@ -60,19 +60,19 @@ class QueryCompiler_Firebird extends QueryCompiler {
     return "";
   }
 
-  insert() {
-    console.log('aqui')
-    let sql = super.insert();
-    if (sql === "") return sql;
+  // insert() {
+  //   console.log('aqui')
+  //   let sql = super.insert();
+  //   if (sql === "") return sql;
 
-    const { returning } = this.single;
-    if (returning) sql += this._returning(returning);
+  //   const { returning } = this.single;
+  //   if (returning) sql += this._returning(returning);
 
-    return {
-      sql: sql,
-      returning,
-    };
-  }
+  //   return {
+  //     sql: sql,
+  //     returning,
+  //   };
+  // }
 
   _returning(value) {
     return value ? ` returning ${this.formatter.columnize(value)}` : "";
